@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import MovieList from "./components/MovieList/MovieList";
 
 
 const API_KEY = 'c7c5d1ce6c96e2785bed26f92732a5cc';
@@ -45,6 +46,7 @@ const App = () => {
     return (
         <div className="App">
             {console.log(movieList)}
+            <MovieList movieList={movieList}/>
         </div>
     );
 }
