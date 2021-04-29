@@ -27,7 +27,7 @@ const App = () => {
 
         const filteredMovies = await Promise.all(movies.data.results.map(async movie => {
             movie.details = await getDetails(movie.id);
-            return movie;
+            return movie.details;
         }));
 
         console.log(filteredMovies);
