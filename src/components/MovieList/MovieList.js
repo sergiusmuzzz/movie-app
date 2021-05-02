@@ -6,9 +6,7 @@ const MovieList = ({movieList}) => {
     return (
         <div className={styles.movieList}>
             {movieList.map(movie => (
-            <>
                 <MovieItem movie={movie} key={movie.id} />
-            </>
             ))}
         </div>
     )

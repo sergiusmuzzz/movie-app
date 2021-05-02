@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import axios from "axios";
 import MovieList from "./components/MovieList/MovieList";
 
@@ -6,16 +6,31 @@ import MovieList from "./components/MovieList/MovieList";
 const API_KEY = 'c7c5d1ce6c96e2785bed26f92732a5cc';
 
 const App = () => {
-
-    const [initialized, setInitialized] = useState(false);
     const [movieList, setMovieList] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [hasMore, setHasMore] = useState(false);
+    // Loader reference
+    const observer = useRef(null);
 
 
     // API calls to returns JSON that's added to the state
     const fetchData = async () => {
-        const movies = await axios(
-            `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US`,
-        );
+        setLoading(true);
+        setError(false);
+        let cancel;
+        const movies = await axios
+            .get(
+                `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`
+            )
+            .then(response => {
+                return response
+            })
+            .catch(e => {
+                console.log(e);
+                setError(true);
+            });
 
         const getDetails = id => {
             return axios
@@ -30,23 +45,43 @@ const App = () => {
             return movie.details;
         }));
 
-        console.log(filteredMovies);
-        setMovieList(filteredMovies);
+
+        setHasMore(movies.data.results.length > 0);
+        setMovieList(prevMovies => {
+            console.log([...prevMovies, ...filteredMovies]);
+            return [...prevMovies, ...filteredMovies];
+        });
+        setError(false);
+        setLoading(false);
+        return () => cancel()
     };
 
-    //most popular movies titles based on average ratings
+    // here we handle what happens when user scrolls to Load More div
+    // in this case we just update page variable
+    const loaderRef = useCallback(node => {
+        if (loading) return;
+        if (observer.current) observer.current.disconnect();
+        observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && hasMore) {
+                setTimeout(() => setPage(pagePrev => pagePrev + 1), 200)
+            }
+        })
+        if (node) observer.current.observe(node);
+    }, [loading, hasMore]);
 
     useEffect(() => {
-        // Call the API only once
-        if (!initialized) {
-            fetchData();
-            setInitialized(true);
-        }
-    }, [initialized]);
+        fetchData();
+
+    }, [page]);
+
+
     return (
         <div className="App">
-            {console.log(movieList)}
             <MovieList movieList={movieList}/>
+            <div className="loading" ref={loaderRef}>
+                <h2>{loading && 'Load More...'}</h2>
+            </div>
+            <div>{error && 'Error'}</div>
         </div>
     );
 }

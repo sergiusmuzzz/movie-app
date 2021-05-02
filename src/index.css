@@ -21,6 +21,8 @@ code {
     monospace;
 }
 
-h4 {
-    /*margin: .3rem;*/
+.loading{
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
 }
