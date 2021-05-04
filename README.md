@@ -1,6 +1,6 @@
 # TMDB Movie-App
 
-This is a Movie App build on React.
+This is a Movie App built on React.
 
 Using the [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction) the App displays a list of most popular movie titles based on movies average rating.
 The app allows the user to filter movies by runtime and release dates.
