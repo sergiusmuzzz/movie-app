@@ -7,10 +7,10 @@ The app allows the user to filter movies by runtime and release dates.
 
 The app also features infinite scrolling. When a user keep scrolling new results will be fetched and appended to existing list. New results are list based on values set in filter. 
 
-#Demo
+# Demo
 [TMDB Movie-App](https://main.dgmhq7jrgavj.amplifyapp.com/)
 
-#Installing
+# Installing
 
 After cloning the project from Github change directory into the folder that you've created for the project.
 
@@ -23,7 +23,7 @@ npm install
 npm start
 ```
 
-#Libraries used
+# Libraries used
 [Material UI](https://www.npmjs.com/package/@material-ui/core) for range slider
 
 [Humanize Duration](https://www.npmjs.com/package/humanize-duration) to humanize time duration
