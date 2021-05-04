@@ -7,11 +7,14 @@ import Filter from "./components/Filter/Filter";
 const App = () => {
     const initialValues = {
         runtimeGte: 0,
-        runtimeLte: 0,
+        runtimeLte: 120,
+        startDate: "",
+        endDate: "",
     }
 
     const [page, setPage] = useState(1);
     const [runtime, setRuntime] = useState({gte: 0, lte: 120});
+    const [releaseDateRange, setReleaseDateRange] = useState({startDate: '', endDate: ''})
     const [values, setValues] = useState(initialValues);
 
     const {
@@ -20,7 +23,7 @@ const App = () => {
         movieList,
         hasMore,
         setIsFilterApplied
-    } = useFetchMovies(page, runtime)
+    } = useFetchMovies(page, runtime, releaseDateRange)
     // Loader reference
     const observer = useRef(null);
 
@@ -40,6 +43,10 @@ const App = () => {
 
     const onSubmitHandler = e => {
         e.preventDefault();
+        setReleaseDateRange({
+            startDate: values.startDate,
+            endDate: values.endDate
+        })
         setRuntime({
             gte: values.runtimeGte,
             lte: values.runtimeLte,

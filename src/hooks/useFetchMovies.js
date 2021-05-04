@@ -3,7 +3,7 @@ import axios from "axios";
 
 const API_KEY = 'c7c5d1ce6c96e2785bed26f92732a5cc';
 
-const useFetchMovies = (page, runtime) => {
+const useFetchMovies = (page, runtime, releaseDateRange) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [movieList, setMovieList] = useState([]);
@@ -22,6 +22,8 @@ const useFetchMovies = (page, runtime) => {
                 params: {
                     api_key: API_KEY,
                     page: page,
+                    'release_date.gte': releaseDateRange.startDate,
+                    'release_date.lte': releaseDateRange.endDate,
                     'with_runtime.gte': runtime.gte,
                     'with_runtime.lte': runtime.lte,
                 }
@@ -73,7 +75,7 @@ const useFetchMovies = (page, runtime) => {
     useEffect(() => {
         fetchData();
 
-    }, [page, runtime]);
+    }, [page, runtime, releaseDateRange]);
 
     return {loading, error, movieList, hasMore, setIsFilterApplied}
 }

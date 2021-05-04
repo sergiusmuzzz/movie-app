@@ -25,6 +25,14 @@
     margin-bottom: 1rem;
 }
 
+.datePicker {
+    margin-left: .5rem;
+}
+
+.datePicker {
+    padding: .5rem;
+}
+
 .button {
     border: 0;
     cursor: pointer;

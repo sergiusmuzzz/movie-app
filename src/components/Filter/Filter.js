@@ -32,6 +32,27 @@ const Filter = ({values, setValues, onSubmitHandler, onChangeHandler}) => {
                         />
                     </div>
                 </div>
+                <div className={styles.dateRange}>
+                    <h5 className={styles.label}>Filter by release date range:</h5>
+
+                    <label className={styles.label} htmlFor="startDate">
+                        Start Date:
+                        <input className={styles.datePicker}
+                               type="date" name="startDate"
+                               value={values.startDate}
+                               onChange={onChangeHandler}
+                        />
+                    </label>
+                    <label className={styles.label} htmlFor="endDate">
+                        End Date:
+                        <input className={styles.datePicker}
+                               type="date"
+                               name="endDate"
+                               value={values.endDate}
+                               onChange={onChangeHandler}
+                        />
+                    </label>
+                </div>
                 <button className={styles.button} type="submit">Apply</button>
             </form>
         </div>
