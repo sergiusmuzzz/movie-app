@@ -1,8 +1,6 @@
 .filter {
     position: sticky;
     top: 0;
-    /*left: 0;
-    right: 0;*/
     background-color: rgb(244, 244, 244);
     margin-right: 3rem;
     padding: 1.5rem 1rem 1rem;
@@ -61,6 +59,15 @@
 
 .slider{
     max-width: 100%;
+}
+
+span.markLabel{
+    transform: none;
+}
+
+.markLabel ~ .markLabel{
+    left: auto !important;
+    right: 0;
 }
 
 @media (max-width: 960px) {

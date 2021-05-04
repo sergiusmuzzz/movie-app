@@ -29,6 +29,9 @@ const Filter = ({values, setValues, onSubmitHandler, onChangeHandler}) => {
                             getAriaValueText={valuetext}
                             valueLabelDisplay="auto"
                             marks={[{value: 0, label: "0 minutes"}, {value: 360, label: "360 minutes"}]}
+                            classes={{
+                                markLabel: styles.markLabel
+                            }}
                         />
                     </div>
                 </div>
