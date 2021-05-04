@@ -9,7 +9,7 @@ const App = () => {
         runtimeGte: 0,
         runtimeLte: 120,
         startDate: "",
-        endDate: "",
+        endDate: new Date(Date.now()).toISOString().split('T')[0],
     }
 
     const [page, setPage] = useState(1);
