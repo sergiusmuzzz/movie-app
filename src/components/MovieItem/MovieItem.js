@@ -21,8 +21,8 @@ const MovieItem = ({movie}) => {
                  alt={movie.title}
             />
             <dl className={styles.movieInfo}>
-                <dt><h2>{movie.title} <span className={styles.releaseYear}>({releaseYear})</span></h2></dt>
-                <dd className={styles.stats}><span>{certification}</span> | <span>{timeConvert(movie.runtime)}</span> | <span>{genres}</span></dd>
+                <dt><h2>{movie.title} <span className={styles.releaseYear}>({releaseYear ? releaseYear : 'TBD'})</span></h2></dt>
+                <dd className={styles.stats}>{certification && <><span>{certification}</span> |</>} <span>{timeConvert(movie.runtime)}</span> | <span>{genres}</span></dd>
                 <dd className={styles.certication}>TMDB Rating: {movie.vote_average}</dd>
             </dl>
         </div>
