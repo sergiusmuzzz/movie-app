@@ -2,10 +2,10 @@
 
 This is a Movie App build on React.
 
-Using the TMDB API the App displays a list of most popular movie titles based on movies average rating.
+Using the [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction) the App displays a list of most popular movie titles based on movies average rating.
 The app allows the user to filter movies by runtime and release dates.
 
-The app also features infinite scrolling. When a user keep scrolling new results will be fetched and appended to existing list. New results are list based on values set in filter. 
+The app also features infinite scrolling. When a user keep scrolling new results will be fetched and appended to the existing list. New results are based on values set in filter. 
 
 # Demo
 [TMDB Movie-App](https://main.dgmhq7jrgavj.amplifyapp.com/)
