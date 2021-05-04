@@ -17,7 +17,7 @@ const MovieItem = ({movie}) => {
     return (
         <div className={styles.card}>
             <img className={styles.thumbnail}
-                 src={`https://image.tmdb.org/t/p/w92/${movie.poster_path}`}
+                 src={movie.poster_path ? `https://image.tmdb.org/t/p/w92/${movie.poster_path}` : 'https://via.placeholder.com/92'}
                  alt={movie.title}
             />
             <dl className={styles.movieInfo}>

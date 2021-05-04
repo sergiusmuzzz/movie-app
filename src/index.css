@@ -13,7 +13,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    padding: 2rem 0;
+    /*padding: 2rem 0;*/
+    position: relative;
 }
 
 code {
@@ -25,4 +26,26 @@ code {
     display: flex;
     justify-content: center;
     padding: 2rem;
+}
+
+.App{
+    display: flex;
+    justify-content: center;
+}
+
+.content{
+    padding: 1rem;
+}
+
+@media (max-width: 960px) {
+    .App{
+        flex-direction: column;
+    }
+}
+
+
+@media (min-width: 959px) {
+    body{
+        padding: 2rem 0;
+    }
 }
