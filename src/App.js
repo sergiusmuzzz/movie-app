@@ -51,7 +51,7 @@ const App = () => {
             gte: values.runtimeGte,
             lte: values.runtimeLte,
         })
-
+        setPage(1);
         setIsFilterApplied(true);
     }
 

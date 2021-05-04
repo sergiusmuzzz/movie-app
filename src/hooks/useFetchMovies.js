@@ -64,7 +64,6 @@ const useFetchMovies = (page, runtime, releaseDateRange) => {
             setIsFilterApplied(false);
         } else {
             setMovieList(prevMovies => {
-                console.log([...prevMovies, ...filteredMovies]);
                 return [...prevMovies, ...filteredMovies];
             });
         }
