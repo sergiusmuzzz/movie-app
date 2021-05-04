@@ -1,19 +1,18 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import axios from "axios";
 
 const API_KEY = 'c7c5d1ce6c96e2785bed26f92732a5cc';
 
 const useFetchMovies = (page, runtime, releaseDateRange) => {
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [movieList, setMovieList] = useState([]);
     const [hasMore, setHasMore] = useState(false);
     const [isFilterApplied, setIsFilterApplied] = useState(false);
 
-
-    // API calls to returns JSON that's added to the state
+    // API calls to return JSON that's added to the state
     const fetchData = async () => {
-        // setIsFilterApplied(true);
         setLoading(true);
         setError(false);
         const movies = await axios({
@@ -54,8 +53,7 @@ const useFetchMovies = (page, runtime, releaseDateRange) => {
         const filteredMovies = await Promise.all(movies.data.results.map(async movie => {
             movie.details = await getDetails(movie.id);
             return movie.details;
-        }))/*.then(res => res.sort((a, b) => a.runtime - b.runtime))*/;
-
+        }));
 
         setHasMore(true);
 
@@ -67,12 +65,14 @@ const useFetchMovies = (page, runtime, releaseDateRange) => {
                 return [...prevMovies, ...filteredMovies];
             });
         }
+
         setError(false);
         setLoading(false);
     };
 
     useEffect(() => {
-        fetchData();
+
+        fetchData().then();
 
     }, [page, runtime, releaseDateRange]);
 

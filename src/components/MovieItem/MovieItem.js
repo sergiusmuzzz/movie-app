@@ -3,6 +3,7 @@ import styles from './MovieItem.module.css';
 import humanize from "humanize-duration";
 
 const MovieItem = ({movie}) => {
+
     const certification = movie.release_dates.results.find(result => result.iso_3166_1 === 'US')?.release_dates[0].certification;
     const releaseDate = new Date(movie.release_date);
     const releaseYear = releaseDate.getFullYear();
@@ -16,7 +17,9 @@ const MovieItem = ({movie}) => {
             />
             <dl className={styles.movieInfo}>
                 <dt><h2>{movie.title} <span className={styles.releaseYear}>({releaseYear ? releaseYear : 'TBD'})</span></h2></dt>
-                <dd className={styles.stats}>{certification && <><span>{certification}</span> |</>} <span>{humanize(movie.runtime * 60000, { delimiter: " " })}</span> | <span>{genres}</span></dd>
+                <dd className={styles.stats}>
+                    {certification && <><span>{certification}</span> |</>} <span>{humanize(movie.runtime * 60000, { delimiter: " " })}</span> | <span>{genres}</span>
+                </dd>
                 <dd className={styles.certication}>TMDB Rating: {movie.vote_average}</dd>
             </dl>
         </div>

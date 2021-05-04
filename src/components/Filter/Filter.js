@@ -4,12 +4,13 @@ import {Slider} from '@material-ui/core';
 
 const Filter = ({values, setValues, onSubmitHandler, onChangeHandler}) => {
 
-
+    //Setting state and props for Slider
     const [value, setValue] = React.useState([0, 120]);
 
     const valuetext = (value) => {
         return `${value} minutes`;
     }
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
         setValues({...values, runtimeGte: newValue[0], runtimeLte: newValue[1]});
@@ -37,7 +38,6 @@ const Filter = ({values, setValues, onSubmitHandler, onChangeHandler}) => {
                 </div>
                 <div className={styles.dateRange}>
                     <h5 className={styles.label}>Filter by release date range:</h5>
-
                     <label className={styles.label} htmlFor="startDate">
                         Start Date:
                         <input className={styles.datePicker}

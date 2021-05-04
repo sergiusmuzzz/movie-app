@@ -5,6 +5,7 @@ import Filter from "./components/Filter/Filter";
 
 
 const App = () => {
+
     const initialValues = {
         runtimeGte: 0,
         runtimeLte: 120,
@@ -24,17 +25,17 @@ const App = () => {
         hasMore,
         setIsFilterApplied
     } = useFetchMovies(page, runtime, releaseDateRange)
+
     // Loader reference
     const observer = useRef(null);
 
-
-    // here we handle what happens when user scrolls to Load More div
+    // Handling what happens when user scrolls to Load More div
     // in this case we just update page variable
     const loaderRef = useCallback(node => {
         if (loading) return;
         if (observer.current) observer.current.disconnect();
         observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting ) {
+            if (entries[0].isIntersecting) {
                 setTimeout(() => setPage(pagePrev => pagePrev + 1), 200)
             }
         })
@@ -53,17 +54,16 @@ const App = () => {
         })
         setPage(1);
         setIsFilterApplied(true);
+        window.scrollTo(0, 0)
     }
 
     const onChangeHandler = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setValues({
             ...values,
             [name]: value
         })
     }
-
-
 
     return (
         <div className="App">
@@ -76,12 +76,12 @@ const App = () => {
             <div className="content">
                 <MovieList movieList={movieList}/>
                 {hasMore &&
-                    <div className="loading" ref={loaderRef}>
-                        <h2>{loading && 'Load More...'}</h2>
-                    </div>
+                <div className="loading" ref={loaderRef}>
+                    <h2>{loading && 'Load More...'}</h2>
+                </div>
                 }
                 {error &&
-                    <div>Error</div>
+                <div>Error</div>
                 }
             </div>
         </div>
