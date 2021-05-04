@@ -7,11 +7,11 @@ import Filter from "./components/Filter/Filter";
 const App = () => {
     const initialValues = {
         runtimeGte: 0,
-        runtimeLte: 120,
+        runtimeLte: 0,
     }
 
     const [page, setPage] = useState(1);
-    const [runtime, setRuntime] = useState({gte: 0, lte: 0});
+    const [runtime, setRuntime] = useState({gte: 0, lte: 120});
     const [values, setValues] = useState(initialValues);
 
     const {
