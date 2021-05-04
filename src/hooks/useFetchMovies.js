@@ -16,11 +16,17 @@ const useFetchMovies = (page, runtime) => {
         // setIsFilterApplied(true);
         setLoading(true);
         setError(false);
-        let cancel;
-        const movies = await axios
-            .get(
-                `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}&with_runtime.gte=${runtime.gte}&with_runtime.lte=${runtime.lte}`
-            )
+        const movies = await axios({
+                method: 'GET',
+                url: `https://api.themoviedb.org/3/movie/popular`,
+                params: {
+                    api_key: API_KEY,
+                    page: page,
+                    'with_runtime.gte': runtime.gte,
+                    'with_runtime.lte': runtime.lte,
+                }
+            }
+        )
             .then(response => {
                 return response
             })
@@ -30,8 +36,14 @@ const useFetchMovies = (page, runtime) => {
             });
 
         const getDetails = id => {
-            return axios
-                .get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=release_dates`)
+            return axios({
+                method: 'GET',
+                url: `https://api.themoviedb.org/3/movie/${id}`,
+                params: {
+                    api_key: API_KEY,
+                    append_to_response: 'release_dates'
+                }
+            })
                 .then(response => {
                     return response.data;
                 });
